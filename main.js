@@ -1,9 +1,12 @@
-// Inspired by
-// http://userscripts.org/scripts/show/26237
-
-if( location.href.match(/^http:\/\/vkontakte\.ru\/away\.php/) ) {
-  document.location.href = unescape(document.location.href.substr(32));
-}
-if( location.href.match(/^http:\/\/vk\.com\/away\.php/) ) {
-  document.location.href = unescape(document.location.href.substr(26));
+links = document.links;
+for(var i = 0; i < links.length; ++i) {
+  href = links[i].href;
+  if(href) {
+    if(href.match(/http:\/\/vkontakte\.ru\/away\.php\?to=/)) {
+      links[i].href = unescape(href.substr(32));
+    }
+    if(href.match(/http:\/\/vk\.com\/away\.php\?to=/)) {
+      links[i].href = unescape(href.substr(26));
+    }
+  }
 }
